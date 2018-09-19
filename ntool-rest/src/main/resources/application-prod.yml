@@ -1,0 +1,135 @@
+##配置内置Tomcat相关参数，使用外部Tomcat时不生效
+server:
+  port: 80
+  contextPath: /
+  session:
+    timeout:  1800
+  tomcat:
+      compression: 4096
+      compressableMimeTypes: application/json,application/xml
+
+##通用参数配置
+common: 
+  mysql-url: mysql://localhost:3306/ambitionj2c?useUnicode=true&characterEncoding=UTF-8
+  mysql-username: root
+  mysql-password: cqabj208
+##跨域制定域名IP，配置
+csrf:
+  execludeUrls: 127.0.0.1,localhost
+##日志
+logging:
+  path: d:/j2cLog/rcsss
+  file: d:/j2cLog/rcsss.log
+##Spring配置  
+spring:
+  http: 
+    encoding: 
+      charset: UTF-8
+      force: true
+  #redis相关参数
+  redis:
+    service-on: true
+    database: 0
+    host: localhost
+    port: 6379
+    pool:
+      max-idle: 8
+      min-idle: 0
+      max-active: 8
+      max-wait: -1
+  #MySQL数据源相关参数
+  datasource:
+    username: ${common.mysql-username}
+    password: ${common.mysql-password}
+    url: jdbc:log4jdbc:${common.mysql-url}
+    initialSize: 10
+    maxActive: 50
+    minIdle: 10
+    maxWait: 60000
+    removeAbandoned: true
+    removeAbandonedTimeout: 180
+    defaultAutoCommit: false
+    logAbandoned: false
+    testWhileIdle: false
+    testOnBorrow: false
+    testOnReturn: false
+    validationQuery: select 'x'
+    validationQueryTimeout: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    poolPreparedStatements: false
+    maxPoolPreparedStatementPerConnectionSize: 20
+    #druid数据库连接池
+    druid:
+      aopPatterns: com.ambition.rcsssss.service.*,com.ambition.rcsssss.dao.*
+      StatViewServlet:
+        urlPattern: /druid/*
+        allow: 127.0.0.1
+        loginUsername: ${common.mysql-username}
+        loginPassword: ${common.mysql-password}
+        resetEnable: false
+        enabled: true
+  #Spring security相关配置      
+  security:
+    remember:
+      key: cnambition
+      parameter: _remember_me
+      cookieName: REMEMBER_ME
+    admin:
+      resources: /cache,/admin,/management
+##hibernate配置
+hibernate:
+  hbm2ddl:
+    auto: validate
+  show_sql: false
+  format_sql: false
+  use_sql_comments: false
+  dialect:  org.hibernate.dialect.MySQLInnoDBDialect
+  packagesToScan: com.ambition.rcsssss.model.common,com.ambition.rcsssss.model
+  cache:
+    provider_class: org.hibernate.cache.NoCacheProvider
+
+##swagger2配置
+swagger:
+  basePackage:  com.ambition.rcsssss
+  title: IMARD接口
+  description: 安锐达影像
+  termsOfServiceUrl: #http://rcp.cnambition.cn
+  version: #2.0
+  license: #重庆安碧捷科技股份有限公司
+  licenseUrl: #http://www.cnambition.com/
+  contact:
+    name: #晁宇航 
+    url: #http://www.cnambition.com/
+    mail: #yuhang.chao@cnambition.com
+
+##数据库迁移管理
+flyway:
+  baseline-version: 1
+  enabled: true
+  baseline-on-migrate: true
+  locations: classpath:db/migration/{vendor}
+  sql-migration-prefix: V
+  sql-migration-suffix: .sql
+  user: ${common.mysql-username}
+  password: ${common.mysql-password}
+  url: jdbc:${common.mysql-url}
+  #上传文件路径配置
+upload:
+  #上传路径
+  file:
+    root-path: D:/upload
+    temp-path: /temp
+    formal-path: /formal
+    image-path: /image/
+    file-path: /file/
+    qrimage-path: /qrcode/
+  #静态文件路径转发
+  mapping:
+    image: /image/**
+    file: /file/**
+  #压缩图片
+  thumbnail:
+    height: 152
+    width: 152
+    prefix: min

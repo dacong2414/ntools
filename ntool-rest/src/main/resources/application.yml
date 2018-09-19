@@ -1,0 +1,12 @@
+banner:
+  charset: UTF-8
+  location: classpath:banner.txt
+#配置总览，控制加载那个配置文件
+spring:
+  profiles:
+    active: 
+      - dev
+  application:
+    name: rcsss
+  project:
+    version: @project.version@  

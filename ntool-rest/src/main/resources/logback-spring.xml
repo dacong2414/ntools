@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE xml>
+<configuration>
+	<springProperty scope="context" name="logbase" source="logging.path"
+		defaultValue="localhost" />
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include
+		resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<appender name="RollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logbase}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logbase}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>20MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+			<charset>utf8</charset>
+		</encoder>
+	</appender>
+	<appender name="ErrorRollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logbase}-error.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logbase}-error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 50MB -->
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+			<charset>utf8</charset>
+		</encoder>
+	</appender>
+
+	<!-- 开发、测试环境 -->
+	<springProfile name="dev">
+		<logger name="org.springframework.transaction.interceptor"
+			level="TRACE" />
+		<logger name="org.springframework.web" level="INFO" />
+		<logger name="com.ambition.rcsss" level="DEBUG" />
+		<logger name="jdbc.sqltiming" level="INFO" />
+		<logger name="jdbc.audit" level="ERROR" />
+		<logger name="jdbc.resultset" level="ERROR" />
+		<logger name="jdbc.sqlonly" level="ERROR" />
+		<logger name="jdbc.connection" level="ERROR" />
+	</springProfile>
+
+	<!-- 生产环境 -->
+	<springProfile name="prod">
+		<logger name="org.springframework.web" level="ERROR" />
+		<logger name="icom.ambition.j2c" level="ERROR" />
+		<logger name="jdbc.sqltiming" level="ERROR" />
+	</springProfile>
+
+	<root level="WARN">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="RollingFile" />
+		<appender-ref ref="ErrorRollingFile" />
+	</root>
+</configuration> 
