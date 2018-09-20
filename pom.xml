@@ -44,7 +44,17 @@
 				<version>2.10.4</version>
 				<scope>${useful.scope}</scope>
 			</dependency>
-
+			<!-- httpclient -->
+			<dependency>
+			    <groupId>org.apache.httpcomponents</groupId>
+			    <artifactId>httpclient</artifactId>
+		    	<version>4.5.2</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.httpcomponents</groupId>
+			    <artifactId>httpcore</artifactId>
+			    <version>4.4.9</version>
+			</dependency>
 			<!-- swgger2 -->
 			<dependency>
 				<groupId>io.springfox</groupId>
@@ -94,6 +104,12 @@
 				<artifactId>fastjson</artifactId>
 				<version>1.2.32</version>
 				<scope>${useful.scope}</scope>
+			</dependency>
+			<!-- jackson -->
+			<dependency>
+			    <groupId>org.codehaus.jettison</groupId>
+			    <artifactId>com.springsource.org.codehaus.jettison</artifactId>
+			    <version>1.0.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>

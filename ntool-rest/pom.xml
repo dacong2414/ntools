@@ -27,7 +27,15 @@
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
-
+		<!-- httpclient -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpcore</artifactId>
+		</dependency>
 		<!-- spring boot starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -112,7 +120,10 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
-
+		<dependency>
+		    <groupId>org.codehaus.jettison</groupId>
+		    <artifactId>com.springsource.org.codehaus.jettison</artifactId>
+	    </dependency>
 	</dependencies>
 
 	<build>
