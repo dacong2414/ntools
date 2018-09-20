@@ -6,10 +6,10 @@ package com.nuls.io.model.common;
 
 /**
  * 全局返回码汇总
- * @author 晁宇航
- * @version $Id: CodeEnum.java, v 0.1 2017年6月16日 下午6:30:21 晁宇航 Exp $
+ * @author 
+ * @version
  */
-public enum CodeEnum {
+public enum CodeEnum {   
     /**
      * 请求成功
      */
