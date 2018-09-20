@@ -11,12 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.nuls.io.utils.StringUtils;
 
-/**
- * 将form表单提交过来的数据String转化为date
- *
- * @author chaoyuhang
- * @version $Id: DateConverter.java, v 0.1 2015年5月7日 下午2:45:05 chaoyuhang Exp $
- */
+
 @Component
 public class DateConverter implements Converter<String, Date> {
     /**

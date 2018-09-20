@@ -9,12 +9,10 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
 /**
  * 自定义注解 需要进行缓存的service方法
+ * @author USER
  *
- * @author cyh
- * @version $Id: NeedEhcache.java, v 0.1 2016年10月28日 下午4:10:37 cyh Exp $
  */
 @Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)

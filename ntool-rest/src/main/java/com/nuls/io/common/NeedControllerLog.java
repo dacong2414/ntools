@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
 
 /**
  * 自定义注解 拦截Controller打印日志
- * @author cyh
- * @version $Id: SystemControllerLog.java, v 0.1 2016年10月28日 下午3:15:40 cyh Exp $
+ * @author USER
+ *
  */
 @Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
