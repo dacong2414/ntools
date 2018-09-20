@@ -16,13 +16,13 @@
   <dependencies>
 		<!-- 导入model模块 -->
 		<dependency>
-			<groupId>nuls</groupId>
+			<groupId>ntool</groupId>
 			<artifactId>ntool-model</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
 		<dependency>
-			<groupId>nuls</groupId>
+			<groupId>ntool</groupId>
 			<artifactId>ntool-utils</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
