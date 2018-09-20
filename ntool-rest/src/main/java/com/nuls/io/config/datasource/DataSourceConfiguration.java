@@ -17,16 +17,15 @@ import com.alibaba.druid.filter.logging.LogFilter;
 import com.alibaba.druid.pool.DruidDataSource;
 
 /**
- * datasource bean对象
+ * 
+ * @author USER
  *
- * @author hhu
- * @version $Id: DataSourceConfiguration.java, v 0.1 2017年6月22日 上午10:32:51 hhu Exp $
  */
 @Configuration
 public class DataSourceConfiguration {
 
     @Primary
-    @Bean(initMethod = "init", destroyMethod = "close")
+    @Bean(initMethod = "init", destroyMethod = "close" ,name="dataSource")
     public DataSource dataSource(Environment env, LogFilter logFilter, Filter statFilter,
                                  Filter wallFilter) {
         /**

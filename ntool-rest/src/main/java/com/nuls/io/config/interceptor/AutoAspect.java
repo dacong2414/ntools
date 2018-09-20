@@ -15,7 +15,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
@@ -23,8 +23,6 @@ import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.nuls.io.config.datasource.DruidStatProperties;
 
 /**
- * @author hhu
- * @version $Id: AopConfig.java, v 0.1 2017年5月10日 上午10:11:37 hhu Exp $
  */
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
@@ -54,7 +52,7 @@ public class AutoAspect {
     }
 
     @Bean
-    public TransactionInterceptor transactionInterceptor(HibernateTransactionManager transactionManager) {
+    public TransactionInterceptor transactionInterceptor(DataSourceTransactionManager  transactionManager) {
         TransactionInterceptor transactionInterceptor = new TransactionInterceptor();
         transactionInterceptor
             .setTransactionManager((PlatformTransactionManager) transactionManager);

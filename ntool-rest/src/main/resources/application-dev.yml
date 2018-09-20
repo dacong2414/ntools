@@ -79,17 +79,32 @@ spring:
     admin:
       resources: /cache,/admin,/management
 ##hibernate配置
-hibernate:
-  hbm2ddl:
-    auto: validate
-  show_sql: false
-  format_sql: false
-  use_sql_comments: false
-  dialect:  org.hibernate.dialect.MySQLInnoDBDialect
-  packagesToScan: com.nuls.io.model.common,com.nuls.io.model
-  cache:
-    provider_class: org.hibernate.cache.NoCacheProvider
+##hibernate:
+  ##hbm2ddl:
+    ##auto: validate
+  ##show_sql: false
+  ##format_sql: false
+  ##use_sql_comments: false
+  ##dialect:  org.hibernate.dialect.MySQLInnoDBDialect
+  ##packagesToScan: com.nuls.io.model.common,com.nuls.io.model
+  ##cache:
+    ##provider_class: org.hibernate.cache.NoCacheProvider
 
+##数据库迁移管理
+flyway:
+  baseline-version: 1
+  enabled: true
+  baseline-on-migrate: true
+  locations: classpath:db/migration/{vendor}
+  sql-migration-prefix: V
+  sql-migration-suffix: .sql
+  user: ${common.mysql-username}
+  password: ${common.mysql-password}
+  url: jdbc:${common.mysql-url}
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别# 注意：对应实体类的路径 #注意：一定要对应  mapper映射xml文件的所在路径
+mybatis:
+  mapperLocations: classpath:mapping/*.xml  
+  package: com.nuls.io.dao
 ##swagger2配置
 swagger:
   basePackage:  com.nuls.io
@@ -104,17 +119,7 @@ swagger:
     url: #https://www.binance.com
     mail: 
 
-##数据库迁移管理
-flyway:
-  baseline-version: 1
-  enabled: true
-  baseline-on-migrate: true
-  locations: classpath:db/migration/{vendor}
-  sql-migration-prefix: V
-  sql-migration-suffix: .sql
-  user: ${common.mysql-username}
-  password: ${common.mysql-password}
-  url: jdbc:${common.mysql-url}
+
   #上传文件路径配置
 upload:
   #上传路径

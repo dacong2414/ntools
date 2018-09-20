@@ -4,17 +4,14 @@
  */
 package com.nuls.io.config.web;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.orm.hibernate5.support.OpenSessionInViewFilter;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -36,7 +33,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
      *知道request将全部页面发送到客户端，这样就可以解决延迟加载带来的问题 
      * @return
      */
-    @Bean
+   /* @Bean
     public FilterRegistrationBean openSessionInViewFilter() {
         FilterRegistrationBean bean = new FilterRegistrationBean();
         bean.setFilter(new OpenSessionInViewFilter());
@@ -52,7 +49,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         bean.setOrder(Integer.MAX_VALUE);
         return bean;
     }
-
+*/
     /**
      * 默认使用fastjson处理返回对象转化
      * @param converters

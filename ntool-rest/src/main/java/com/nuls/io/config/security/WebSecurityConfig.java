@@ -26,24 +26,17 @@ import org.springframework.security.web.authentication.session.RegisterSessionAu
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy;
 
-import com.nuls.io.security.AjaxAuthenticationFailureHandler;
-import com.nuls.io.security.AjaxAuthenticationProvider;
-import com.nuls.io.security.AjaxAuthenticationSuccessHandler;
-import com.nuls.io.security.MyAccessDecisionManager;
-import com.nuls.io.security.MySecurityFilter;
-import com.nuls.io.security.MySecurityMetadataSource;
-import com.nuls.io.security.MyTokenBasedRememberMeServices;
-import com.nuls.io.service.SpringSecurityService;
 
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
+
 /**
  * 
  *
  * @author hhu
  * @version $Id: WebSecurityConfig.java, v 0.1 2017年5月16日 下午1:34:20 hhu Exp $
  */
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${csrf.execludeUrls}")
     private String                           execludeUrls;
@@ -54,50 +47,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${spring.security.remember.cookieName}")
     private String                           remCookieName;
 
-    @Autowired
-    private UserDetailsService               userDetailsService;
-
-    @Autowired
-    private MyAccessDecisionManager          myAccessDecisionManager;
-    @Autowired
-    private MySecurityMetadataSource         mySecurityMetadataSource;
-    @Autowired
-    private AjaxAuthenticationFailureHandler ajaxFailureHandler;
-    @Autowired
-    private AjaxAuthenticationSuccessHandler ajaxSuccessHandler;
-    @Autowired
-    private SpringSecurityService            springSecurityService;
-
-    public MyTokenBasedRememberMeServices rememberMeServices() {
-        MyTokenBasedRememberMeServices service = new MyTokenBasedRememberMeServices(remKey,
-            userDetailsService);
-        service.setCookieName(remCookieName);
-        service.setParameter(remParam);
-        service.setSpringSecurityService(springSecurityService);
-        return service;
-    }
+   
 
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
 
-    public MySecurityFilter mySecurityFilter() throws Exception {
-        MySecurityFilter filter = new MySecurityFilter();
-        filter.setAuthenticationManager(authenticationManager());
-        filter.setAccessDecisionManager(myAccessDecisionManager);
-        filter.setSecurityMetadataSource(mySecurityMetadataSource);
-        return filter;
-    }
 
-    public AjaxAuthenticationProvider ajaxLoginFilter() throws Exception {
-        AjaxAuthenticationProvider provider = new AjaxAuthenticationProvider(springSecurityService);
-        provider.setAuthenticationManager(authenticationManager());
-        provider.setAuthenticationFailureHandler(ajaxFailureHandler);
-        provider.setAuthenticationSuccessHandler(ajaxSuccessHandler);
-        provider.setRememberMeServices(rememberMeServices());
-        return provider;
-    }
 
     public UserRequiresCsrfMatcher userRequiresCsrfMatcher() {
         List<String> urls = new ArrayList<String>();
@@ -147,7 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/index.html", "/doc.html", "/swagger-ui.html", "/webjars/**",
             "/swagger-resources/**", "/v2/**", "/api", "/db", "/favicon.ico", "/resources/**",
-            "/druid/**", "/message/*");
+            "/druid/**", "/user/*");
     }
 
     /**
@@ -164,27 +121,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * 2、注册用户自定义的请求匹配器requireCsrfProtectionMatcher
          */
         http.exceptionHandling().accessDeniedPage("/authExp").and().authorizeRequests()
-            .antMatchers("/message/*").permitAll().antMatchers("/file/method=download*")
+            .antMatchers("/user*").permitAll().antMatchers("/file/method=download*")
             .permitAll().antMatchers("/error").permitAll().antMatchers("/**").hasRole("USER").and()
             .formLogin().loginPage("/logon").permitAll().and().logout().invalidateHttpSession(true)
             .logoutUrl("/logout").and().csrf()
-            .requireCsrfProtectionMatcher(userRequiresCsrfMatcher()).and().rememberMe().key(remKey)
-            .rememberMeServices(rememberMeServices()).and().sessionManagement()
-            .sessionAuthenticationStrategy(sessionAuthenticationStrategy())
-            .invalidSessionUrl("/logon").and()
-            .addFilterAt(ajaxLoginFilter(), UsernamePasswordAuthenticationFilter.class)
-            .addFilterAt(mySecurityFilter(), FilterSecurityInterceptor.class);
+            .requireCsrfProtectionMatcher(userRequiresCsrfMatcher()).and().rememberMe().key(remKey);
     }
 
-    /**
-     * 3、
-     * @param auth
-     * @throws Exception
-     * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder)
-     */
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
-        auth.userDetailsService(userDetailsService);
-    }
 }
