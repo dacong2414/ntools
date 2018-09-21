@@ -28,12 +28,6 @@ import org.springframework.security.web.authentication.session.SessionFixationPr
 
 
 
-/**
- * 
- *
- * @author hhu
- * @version $Id: WebSecurityConfig.java, v 0.1 2017年5月16日 下午1:34:20 hhu Exp $
- */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
@@ -47,14 +41,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${spring.security.remember.cookieName}")
     private String                           remCookieName;
 
-   
-
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
-
 
     public UserRequiresCsrfMatcher userRequiresCsrfMatcher() {
         List<String> urls = new ArrayList<String>();
@@ -87,12 +77,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return sas;
     }
 
-    //@Bean security session监听器，可在创建和销毁session时触发相应方法
-    //    public static ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() { //(5)
-    //        return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(
-    //            new HttpSessionEventPublisher());
-    //    }
-
     /**
      * 1、
      * web相关配置静态
@@ -103,8 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/index.html", "/doc.html", "/swagger-ui.html", "/webjars/**",
-            "/swagger-resources/**", "/v2/**", "/api", "/db", "/favicon.ico", "/resources/**",
-            "/druid/**", "/user/*");
+            "/swagger-resources/**", "/v2/**", "/api", "/db", "/favicon.ico");
     }
 
     /**
@@ -121,8 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * 2、注册用户自定义的请求匹配器requireCsrfProtectionMatcher
          */
         http.exceptionHandling().accessDeniedPage("/authExp").and().authorizeRequests()
-            .antMatchers("/user*").permitAll().antMatchers("/file/method=download*")
-            .permitAll().antMatchers("/error").permitAll().antMatchers("/**").hasRole("USER").and()
+            .antMatchers("/error").permitAll().antMatchers("/**").hasRole("USER").and()
             .formLogin().loginPage("/logon").permitAll().and().logout().invalidateHttpSession(true)
             .logoutUrl("/logout").and().csrf()
             .requireCsrfProtectionMatcher(userRequiresCsrfMatcher()).and().rememberMe().key(remKey);

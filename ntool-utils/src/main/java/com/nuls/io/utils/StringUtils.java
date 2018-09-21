@@ -31,11 +31,6 @@ import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author cyh
- * @version $Id: StringUtils.java, v 0.1 2016年10月27日 下午1:54:22 cyh Exp $
- */
 public class StringUtils {
     /**
      * 日志

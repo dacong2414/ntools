@@ -6,4 +6,8 @@ public class Config {
 	  final static String BINANCE_API_KEY="x92XrxBBJ4u19rlo2dhDzHNubsjAnBcW3LsCxMGOnyIVMrplteAIeB42plU7Jrsg";
 	    // secretKey为用户申请的secretKey
 	  final static String BINANCE_API_SECRET="UgMFyBpx6Hq8sRT74VIglalANtoc4xLfznXj0B9MXyeHu7VFjW2oaSM1MZchBnot"; 
+	  //本地
+	  final static String LOCALHOST="127.0.0.1"; 
+	  //代理端口
+	  final static int PROXY_PORT=1080; 
 }

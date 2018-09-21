@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 /**
  * 字符串加密压缩
  *
- * @author hhu
- * @version $Id: Sha256Utils.java, v 0.1 2017年7月7日 下午3:19:28 hhu Exp $
  */
 public class Sha256Utils {
     private static final Logger LOG = LoggerFactory.getLogger(Sha256Utils.class);

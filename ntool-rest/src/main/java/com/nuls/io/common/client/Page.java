@@ -2,7 +2,7 @@
  * Ambition Inc.
  * Copyright (c) 2006-2012 All Rights Reserved.
  */
-package com.nuls.io.common.frame;
+package com.nuls.io.common.client;
 
 /**
  *页类

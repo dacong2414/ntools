@@ -17,12 +17,7 @@ import org.springframework.util.Assert;
 import com.nuls.io.common.EhRedisCache;
 import com.nuls.io.utils.ListUtils;
 
-/**
- * AOP类定义了切点和通知，对Service/DAO的方法做了缓存
- *
- * @author Dale Chao
- * @version $Id: EhCacheInterceptor.java, v 0.1 2016年7月28日 下午6:05:05 Dale Chao Exp $
- */
+
 @Aspect
 @Order(3)
 @Component

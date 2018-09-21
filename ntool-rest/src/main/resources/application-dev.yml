@@ -13,9 +13,10 @@ common:
   mysql-url: "mysql://localhost:3306/nuls?useUnicode=true&characterEncoding=UTF-8"
   mysql-username: root
   mysql-password: binancenuls208
+  
 ##跨域制定域名IP和端口80可省略，配置
 csrf:
-  execludeUrls: 127.0.0.1,localhost,192.168.2.49,192.168.2.53,192.168.4.250
+  execludeUrls: 127.0.0.1,localhost
 ##日志
 logging:
   path: /ntool
@@ -78,17 +79,6 @@ spring:
       cookieName: REMEMBER_ME
     admin:
       resources: /cache,/admin,/management
-##hibernate配置
-##hibernate:
-  ##hbm2ddl:
-    ##auto: validate
-  ##show_sql: false
-  ##format_sql: false
-  ##use_sql_comments: false
-  ##dialect:  org.hibernate.dialect.MySQLInnoDBDialect
-  ##packagesToScan: com.nuls.io.model.common,com.nuls.io.model
-  ##cache:
-    ##provider_class: org.hibernate.cache.NoCacheProvider
 
 ##数据库迁移管理
 flyway:
@@ -119,23 +109,3 @@ swagger:
     url: #https://www.binance.com
     mail: 
 
-
-  #上传文件路径配置
-upload:
-  #上传路径
-  file:
-    root-path: /upload/
-    temp-path: /temp
-    formal-path: /formal
-    image-path: /image/
-    file-path: /file/
-    qrimage-path: /qrcode/
-  #静态文件路径转发
-  mapping:
-    image: /image/**
-    file: /file/**
-  #压缩图片
-  thumbnail:
-    height: 152
-    width: 152
-    prefix: min

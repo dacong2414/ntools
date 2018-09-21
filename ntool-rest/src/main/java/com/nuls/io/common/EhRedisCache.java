@@ -26,7 +26,6 @@ import com.nuls.io.utils.ObjectUtil;
 
 /**
  * 两级缓存，一级:ehcache,二级为redisCache
- * @author yulin
  *
  */
 @Data

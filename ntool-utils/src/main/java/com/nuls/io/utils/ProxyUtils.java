@@ -6,12 +6,7 @@ import org.springframework.aop.framework.AdvisedSupport;
 import org.springframework.aop.framework.AopProxy;
 import org.springframework.aop.support.AopUtils;
 
-/**
- * 取代理对象的原始对象
- *
- * @author cyh
- * @version $Id: ProxyUtils.java, v 0.1 2016年11月17日 下午5:28:32 cyh Exp $
- */
+
 public class ProxyUtils {
     /**
      * 通过代理对象获取原始对象

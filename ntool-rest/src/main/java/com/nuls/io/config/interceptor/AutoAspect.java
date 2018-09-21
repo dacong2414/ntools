@@ -1,7 +1,4 @@
-/**
- * Ambition Inc.
- * Copyright (c) 2006-2017 All Rights Reserved.
- */
+
 package com.nuls.io.config.interceptor;
 
 import java.util.Properties;
@@ -22,8 +19,6 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.nuls.io.config.datasource.DruidStatProperties;
 
-/**
- */
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableConfigurationProperties(DruidStatProperties.class)
