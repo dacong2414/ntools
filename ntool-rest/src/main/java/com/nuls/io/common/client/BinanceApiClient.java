@@ -251,15 +251,15 @@ System.out.println(content);
 
     public static void main(String[] args) {
 
-        Config.load();
+        //Config.load();
 
         BinanceApiClient client = new BinanceApiClient();
 
 //        JSONObject res = client.getMyTrades("NULSUSDT", 20);
 
-        JSONObject res = client.getTiker("NULSBTC");
+       JSONObject res = client.getTiker("NULSBTC");
 
-//        JSONObject res = client.getAccount();
+      //  JSONObject res = client.getAccount();
 
 //        JSONObject res = client.getOrderBooks("NULSBTC", 1000);
 
