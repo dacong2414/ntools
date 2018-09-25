@@ -11,7 +11,7 @@
 
   <insert id="insert" parameterType="com.nuls.io.model.entity.User">
     INSERT INTO
-      <include refid="BASE_TABLE"/>
+     <include refid="BASE_TABLE"/>
     <trim prefix="(" suffix=")" suffixOverrides=",">
       userName,password,
       <if test="phone != null">

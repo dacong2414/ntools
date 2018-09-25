@@ -87,7 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/index.html", "/doc.html", "/swagger-ui.html", "/webjars/**",
-            "/swagger-resources/**", "/v2/**", "/api", "/db", "/favicon.ico");
+            "/swagger-resources/**", "/v2/**", "/api", "/db", "/favicon.ico","/user/*");
     }
 
     /**
@@ -103,11 +103,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * 1、csrf 禁用，ajax跨域请求会被拦截判定失效  csrf.disable()
          * 2、注册用户自定义的请求匹配器requireCsrfProtectionMatcher
          */
-        http.exceptionHandling().accessDeniedPage("/authExp").and().authorizeRequests()
-            .antMatchers("/error").permitAll().antMatchers("/**").hasRole("USER").and()
-            .formLogin().loginPage("/logon").permitAll().and().logout().invalidateHttpSession(true)
-            .logoutUrl("/logout").and().csrf()
-            .requireCsrfProtectionMatcher(userRequiresCsrfMatcher()).and().rememberMe().key(remKey);
+    	 http.exceptionHandling().accessDeniedPage("/authExp").and().authorizeRequests()
+         .antMatchers("/user/*").permitAll().antMatchers("/file/method=download*")
+         .permitAll().antMatchers("/error").permitAll().antMatchers("/**").hasRole("USER").and()
+         .formLogin().loginPage("/logon").permitAll().and().logout().invalidateHttpSession(true)
+         .logoutUrl("/logout").and().csrf()
+         .requireCsrfProtectionMatcher(userRequiresCsrfMatcher()).and().rememberMe().key(remKey)
+         .and().sessionManagement()
+         .sessionAuthenticationStrategy(sessionAuthenticationStrategy())
+         .invalidSessionUrl("/logon");
     }
 
 }

@@ -19,8 +19,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(User user) {
-
-        return userDao.insert(user.getUserName(),user.getPassword(),user.getPhone());
+    	User u=new User();
+u.setPassword(user.getPassword());
+u.setPhone(user.getPhone());
+u.setUserName(user.getUserName());
+        return userDao.insert(u);
     }
 
    
