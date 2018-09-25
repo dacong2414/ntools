@@ -106,11 +106,11 @@
 				<scope>${useful.scope}</scope>
 			</dependency>
 			<!-- jackson -->
-			<!-- <dependency>
+			<dependency>
 			    <groupId>org.codehaus.jettison</groupId>
 			    <artifactId>com.springsource.org.codehaus.jettison</artifactId>
 			    <version>1.0.1</version>
-			</dependency> -->
+			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
@@ -118,12 +118,6 @@
 				<scope>${useful.scope}</scope>
 			</dependency>
 			<!-- 其他工具 end -->
-			<!--java代码简洁工具 -->
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>1.16.6</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
