@@ -29,7 +29,7 @@ public class NulsJob {
     /**
      * 定时任务
      */
-   @Scheduled(fixedRate = 15 * 1000)
+  // @Scheduled(fixedRate = 15 * 1000)
     public void getData() {
        Calendar calendar=	Calendar.getInstance();
        long startTime = System.currentTimeMillis();

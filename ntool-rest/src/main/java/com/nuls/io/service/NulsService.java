@@ -1,6 +1,9 @@
 package com.nuls.io.service;
 
 import java.util.List;
+import java.util.Map;
+
+import org.codehaus.jettison.json.JSONObject;
 
 import com.nuls.io.model.entity.BtcUsdt;
 import com.nuls.io.model.entity.EthUsdt;
@@ -20,5 +23,12 @@ public interface NulsService {
     int addNulsBtc(List<NulsBtc> nulsBtcList);
     int addNulsEth(List<NulsEth> nulsEthList);
     int addNulsUsdt(List<NulsUsdt> nulsUsdtList);
-
+	Boolean dealWithNnulUsdt(JSONObject json);
+	Boolean dealWithNnulEth(JSONObject json);
+	Map<String ,List<Object>> dealWithData(JSONObject json);
+	Boolean dealWithNulsBtc(JSONObject json);
+	Boolean dealWithBtcUsdt(JSONObject json);
+	Boolean dealWithEthUsdt(JSONObject json);
+	Map<String, List<Object>>  transformNulsBtc(Map<String, List<Object>> mapBtcUstd,Map<String, List<Object>> mapNulsBTC);
+	Map<String, List<Object>> transformNulsEth(Map<String, List<Object>> mapEtcUstd,Map<String, List<Object>> mapNulsEth);
 }

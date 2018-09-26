@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -61,12 +62,10 @@ public class BinanceApiClient implements ApiClient {
     public boolean canBathTrade() {
         return false;
     }
-
     @Override
     public JSONObject getOrderBooks(String symbol, int size) {
         String params = "symbol=" + symbol + "&limit=" + size;
         String url = BASE_URL + "/api/v1/depth?" + params;
-
         Map<String,String> headers = new HashMap<String,String>();
 
         String content = new HttpClientUtil().doGet(url, headers, "utf-8");
@@ -262,9 +261,11 @@ public class BinanceApiClient implements ApiClient {
      //JSONObject res = client.getTiker("NULSBTC");
 
        //JSONObject res = client.getAccount();
-
-          JSONObject res = client.getOrderBooks("NULSUSDT", 1000);
-
+          //String s="1.78550241212";
+          //Double btcUstdBidsPriceD= Double.parseDouble(s);
+          JSONObject res = client.getOrderBooks("NULSETH", 1000);
+          //DecimalFormat df = new DecimalFormat("0.00000000");//保留几位小数，在#后添几个0即可  
+		  //String	f= df.format(btcUstdBidsPriceD);
 //        String res = client.newOrder("NULSUSDT", "buy", 2.1, 26.13);
 
         System.out.println(res);
