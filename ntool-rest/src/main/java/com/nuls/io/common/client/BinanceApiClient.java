@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -14,6 +15,7 @@ import java.util.Map;
 /**
  * Created by ln on 2018/3/23.
  */
+@Component
 public class BinanceApiClient implements ApiClient {
 
     private static Logger log = Logger.getLogger(BinanceApiClient.class);
@@ -68,7 +70,6 @@ public class BinanceApiClient implements ApiClient {
         Map<String,String> headers = new HashMap<String,String>();
 
         String content = new HttpClientUtil().doGet(url, headers, "utf-8");
-        System.out.println(content);
         JSONObject json = new JSONObject();
         try {
             if (content == null) {
@@ -77,6 +78,7 @@ public class BinanceApiClient implements ApiClient {
 
             JSONObject resJson = new JSONObject(content);
             json.put("success", true);
+            json.put("lastUpdateId", resJson.get("lastUpdateId"));
 
             JSONArray asksJson = new JSONArray();
             JSONArray bidsJson = new JSONArray();
@@ -255,13 +257,13 @@ public class BinanceApiClient implements ApiClient {
 
         BinanceApiClient client = new BinanceApiClient();
 
-     //  JSONObject res = client.getMyTrades("NULSUSDT", 20);
+      // JSONObject res = client.getMyTrades("NULSBTC", 20);
 
-     JSONObject res = client.getTiker("NULSBTC");
+     //JSONObject res = client.getTiker("NULSBTC");
 
        //JSONObject res = client.getAccount();
 
-   //  JSONObject res = client.getOrderBooks("NULSBTC", 1000);
+          JSONObject res = client.getOrderBooks("NULSUSDT", 1000);
 
 //        String res = client.newOrder("NULSUSDT", "buy", 2.1, 26.13);
 

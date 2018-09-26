@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nuls.io.dao.EthUsdtDao" >
+  <sql id="BASE_TABLE">
+    eth_usdt
+  </sql>
+
+  <sql id="BASE_COLUMN">
+    price,amount,last_update_id,bids_or_ask,gmt_create
+  </sql>
+
+ <insert id="insert" parameterType="java.util.List">
+     INSERT INTO
+     <include refid="BASE_TABLE"/>
+     ( price,amount,last_update_id,bids_or_ask,gmt_create)
+      VALUES
+     <foreach collection="list" item="nulsUsdt" index="index" separator=",">
+        (
+        #{nulsUsdt.price},
+        #{nulsUsdt.amount},
+        #{nulsUsdt.lastUpdateId},
+        #{nulsUsdt.bidsOrAsk},
+        #{nulsUsdt.gmtCreate}
+        )
+    </foreach>
+  </insert>
+</mapper>
