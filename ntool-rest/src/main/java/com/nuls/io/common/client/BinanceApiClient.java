@@ -261,7 +261,7 @@ public class BinanceApiClient implements ApiClient {
      //JSONObject res = client.getTiker("NULSBTC");
 
        //JSONObject res = client.getAccount();
-          //String s="1.78550241212";
+         // String s="111.78550241212";
           //Double btcUstdBidsPriceD= Double.parseDouble(s);
           JSONObject res = client.getOrderBooks("NULSETH", 1000);
           //DecimalFormat df = new DecimalFormat("0.00000000");//保留几位小数，在#后添几个0即可  

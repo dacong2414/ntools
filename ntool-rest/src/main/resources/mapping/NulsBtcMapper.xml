@@ -12,7 +12,7 @@
  <insert id="insert" parameterType="java.util.List">
      INSERT INTO
      <include refid="BASE_TABLE"/>
-     ( price,amount,last_update_id,bids_or_ask,gmt_create)
+     (  price,amount,last_update_id,bids_or_ask,gmt_create,total)
       VALUES
      <foreach collection="list" item="nulsUsdt" index="index" separator=",">
         (
@@ -20,7 +20,8 @@
         #{nulsUsdt.amount},
         #{nulsUsdt.lastUpdateId},
         #{nulsUsdt.bidsOrAsk},
-        #{nulsUsdt.gmtCreate}
+        #{nulsUsdt.gmtCreate},
+        #{nulsUsdt.total}
         )
     </foreach>
   </insert>

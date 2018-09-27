@@ -6,11 +6,7 @@ package com.nuls.io.model.exception;
 
 import com.nuls.io.model.common.CodeEnum;
 
-/**
- *
- * @author 晁宇航
- * @version $Id: BaseException.java, v 0.1 2017年6月16日 下午7:21:40 晁宇航 Exp $
- */
+
 public class BaseException extends RuntimeException {
 
     /** */

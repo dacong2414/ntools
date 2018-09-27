@@ -8,6 +8,7 @@ CREATE TABLE nuls_btc(
   amount VARCHAR(255) NOT NULL ,
   last_update_id VARCHAR(255) NOT NULL,
   bids_or_ask VARCHAR(255) NOT NULL,
+  total VARCHAR(255) NOT NULL,
   gmt_create datetime DEFAULT NULL COMMENT '创建时间',
   gmt_mod datetime DEFAULT NULL  COMMENT '修改时间',
   PRIMARY KEY (`rec_id`)
@@ -21,6 +22,7 @@ CREATE TABLE nuls_eth(
   amount VARCHAR(255) NOT NULL ,
   last_update_id VARCHAR(255) NOT NULL,
   bids_or_ask VARCHAR(255) NOT NULL,
+  total VARCHAR(255) NOT NULL,
   gmt_create datetime DEFAULT NULL COMMENT '创建时间',
   gmt_mod datetime DEFAULT NULL  COMMENT '修改时间',
   PRIMARY KEY (`rec_id`)
@@ -34,6 +36,7 @@ CREATE TABLE nuls_usdt(
   amount VARCHAR(255) NOT NULL ,
   last_update_id VARCHAR(255) NOT NULL,
   bids_or_ask VARCHAR(255) NOT NULL,
+  total VARCHAR(255) NOT NULL,
   gmt_create datetime DEFAULT NULL COMMENT '创建时间',
   gmt_mod datetime DEFAULT NULL  COMMENT '修改时间',
   PRIMARY KEY (`rec_id`)
@@ -47,6 +50,7 @@ CREATE TABLE btc_usdt(
   amount VARCHAR(255) NOT NULL ,
   last_update_id VARCHAR(255) NOT NULL,
   bids_or_ask VARCHAR(255) NOT NULL,
+  total VARCHAR(255) NOT NULL,
   gmt_create datetime DEFAULT NULL COMMENT '创建时间',
   gmt_mod datetime DEFAULT NULL  COMMENT '修改时间',
   PRIMARY KEY (`rec_id`)
@@ -59,6 +63,7 @@ CREATE TABLE eth_usdt(
   amount VARCHAR(255) NOT NULL ,
   last_update_id VARCHAR(255) NOT NULL,
   bids_or_ask VARCHAR(255) NOT NULL,
+  total VARCHAR(255) NOT NULL,
   gmt_create datetime DEFAULT NULL COMMENT '创建时间',
   gmt_mod datetime DEFAULT NULL  COMMENT '修改时间',
   PRIMARY KEY (`rec_id`)

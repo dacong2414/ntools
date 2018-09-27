@@ -10,16 +10,17 @@ server:
 
 ##通用参数配置
 common: 
-  mysql-url: mysql://localhost:3306/ambitionj2c?useUnicode=true&characterEncoding=UTF-8
+  mysql-url: "mysql://localhost:3306/nuls?useUnicode=true&characterEncoding=UTF-8"
   mysql-username: root
-  mysql-password: cqabj208
-##跨域制定域名IP，配置
+  mysql-password: binancenuls208
+  
+##跨域制定域名IP和端口80可省略，配置
 csrf:
   execludeUrls: 127.0.0.1,localhost
 ##日志
 logging:
-  path: d:/j2cLog/rcsss
-  file: d:/j2cLog/rcsss.log
+  path: /ntool
+  file: /ntool.log
 ##Spring配置  
 spring:
   http: 
@@ -28,10 +29,11 @@ spring:
       force: true
   #redis相关参数
   redis:
-    service-on: true
+    service-on: false
     database: 0
     host: localhost
     port: 6379
+    password: 
     pool:
       max-idle: 8
       min-idle: 0
@@ -61,7 +63,7 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     #druid数据库连接池
     druid:
-      aopPatterns: com.ambition.rcsssss.service.*,com.ambition.rcsssss.dao.*
+      aopPatterns: com.nuls.io.service.*.*,com.nuls.io.dao.*.*
       StatViewServlet:
         urlPattern: /druid/*
         allow: 127.0.0.1
@@ -69,7 +71,7 @@ spring:
         loginPassword: ${common.mysql-password}
         resetEnable: false
         enabled: true
-  #Spring security相关配置      
+  #Spring security相关配置
   security:
     remember:
       key: cnambition
@@ -77,31 +79,6 @@ spring:
       cookieName: REMEMBER_ME
     admin:
       resources: /cache,/admin,/management
-##hibernate配置
-hibernate:
-  hbm2ddl:
-    auto: validate
-  show_sql: false
-  format_sql: false
-  use_sql_comments: false
-  dialect:  org.hibernate.dialect.MySQLInnoDBDialect
-  packagesToScan: com.ambition.rcsssss.model.common,com.ambition.rcsssss.model
-  cache:
-    provider_class: org.hibernate.cache.NoCacheProvider
-
-##swagger2配置
-swagger:
-  basePackage:  com.ambition.rcsssss
-  title: IMARD接口
-  description: 安锐达影像
-  termsOfServiceUrl: #http://rcp.cnambition.cn
-  version: #2.0
-  license: #重庆安碧捷科技股份有限公司
-  licenseUrl: #http://www.cnambition.com/
-  contact:
-    name: #晁宇航 
-    url: #http://www.cnambition.com/
-    mail: #yuhang.chao@cnambition.com
 
 ##数据库迁移管理
 flyway:
@@ -114,22 +91,21 @@ flyway:
   user: ${common.mysql-username}
   password: ${common.mysql-password}
   url: jdbc:${common.mysql-url}
-  #上传文件路径配置
-upload:
-  #上传路径
-  file:
-    root-path: D:/upload
-    temp-path: /temp
-    formal-path: /formal
-    image-path: /image/
-    file-path: /file/
-    qrimage-path: /qrcode/
-  #静态文件路径转发
-  mapping:
-    image: /image/**
-    file: /file/**
-  #压缩图片
-  thumbnail:
-    height: 152
-    width: 152
-    prefix: min
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别# 注意：对应实体类的路径 #注意：一定要对应  mapper映射xml文件的所在路径
+mybatis:
+  mapperLocations: classpath:mapping/*.xml  
+  package: com.nuls.io.dao
+##swagger2配置
+swagger:
+  basePackage:  com.nuls.io
+  title:  ntool接口
+  description: ntool
+  termsOfServiceUrl: #https://www.binance.com
+  version: #2.0
+  license: #印链科技
+  licenseUrl: #https://www.binance.com
+  contact:
+    name: #杨松
+    url: #https://www.binance.com
+    mail: 
+

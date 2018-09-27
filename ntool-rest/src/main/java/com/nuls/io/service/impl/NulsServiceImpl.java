@@ -81,12 +81,16 @@ public class NulsServiceImpl implements NulsService {
 	 				String price=  jsonArray.get(0).toString();
 	 				String  amount=  jsonArray.get(1).toString();
 					Double priceD= Double.parseDouble(price);
+					Double amountD= Double.parseDouble(amount);
+					Double totalD= priceD*amountD;
+					
 	 				DecimalFormat df = new DecimalFormat("0.00000000");
 	 				mapFor.put("price", df.format(priceD));
 	 				mapFor.put("amount", amount);
 	 				mapFor.put("lastUpdateId", lastUpdateId);
 	 				mapFor.put("gmtCreate", calendar.getTime());
 	 				mapFor.put("bidsOrAsk", "bids");
+	 				mapFor.put("total", df.format(totalD));
 	 				bidsList.add(mapFor);
 	     	  }
 	     	  JSONArray asksAttrs=  json.getJSONArray("asks");//买深度
@@ -97,12 +101,15 @@ public class NulsServiceImpl implements NulsService {
 	 				String price=  jsonArray.get(0).toString();
 	 				String  amount=  jsonArray.get(1).toString();
 	 				Double priceD= Double.parseDouble(price);
+	 				Double amountD= Double.parseDouble(amount);
+					Double totalD= priceD*amountD;
 	 				DecimalFormat df = new DecimalFormat("0.00000000");//防止1.7399E-4
 	 				mapFor.put("price", df.format(priceD));
 	 				mapFor.put("amount", amount);
 	 				mapFor.put("lastUpdateId", lastUpdateId);
 	 				mapFor.put("gmtCreate", calendar.getTime());
 	 				mapFor.put("bidsOrAsk", "asks");
+	 				mapFor.put("total", df.format(totalD));
 	 				asksList.add(mapFor);
 	     	 } 
      	  }catch(Exception e){

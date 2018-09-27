@@ -20,9 +20,19 @@ public class NulsBnb implements Serializable{
     
     private String bidsOrAsk;
     
+    private String total;
+    
     private Date gmtCreate;
     
     private Date gmtMod;
+
+	public String getTotal() {
+		return total;
+	}
+
+	public void setTotal(String total) {
+		this.total = total;
+	}
 
 	public Long getRecId() {
 		return recId;

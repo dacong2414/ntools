@@ -26,7 +26,6 @@
 		<spring-boot-admin.version>1.5.1</spring-boot-admin.version>
 	</properties>
 
-	
 	<dependencyManagement>
 		<dependencies>
 			<!-- 数据库驱动 start -->

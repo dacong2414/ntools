@@ -14,9 +14,7 @@ common:
   mysql-username: root
   mysql-password: binancenuls208
   
-##跨域制定域名IP和端口80可省略，配置
-csrf:
-  execludeUrls: 127.0.0.1,localhost
+
 ##日志
 logging:
   path: /ntool
