@@ -45,7 +45,7 @@ public class NulsJob {
 		 }
 		 //ehRedisCache.evict("nulsUsdt");
 		 ehRedisCache.put("nulsUsdt", map);
-		 nulsService.dealWithNnulUsdt(json);
+		 //nulsService.dealWithNnulUsdt(json);
 		// nulsService.addNulsUsdt(asksList);
 		 //nulsService.addNulsUsdt(bidsList);
        } catch (Exception e) {
@@ -70,7 +70,7 @@ public class NulsJob {
 		 ehRedisCache.put("nulsEth", map);
 		 //nulsService.addNulsEth(asksList);
 		 //nulsService.addNulsEth(bidsList);
-		 nulsService.dealWithNnulEth(json);
+		// nulsService.dealWithNnulEth(json);
        } catch (Exception e) {
     	   e.printStackTrace();
        }
@@ -91,9 +91,7 @@ public class NulsJob {
 		 }
 		// ehRedisCache.evict("nulsBtc");
 		 ehRedisCache.put("nulsBtc", map);
-		 //nulsService.addNulsBtc(asksList);
-		 //nulsService.addNulsBtc(bidsList);
-		 nulsService.dealWithNulsBtc(json);
+		// nulsService.dealWithNulsBtc(json);
        } catch (Exception e) {
     	   e.printStackTrace();
        }
@@ -236,8 +234,8 @@ public class NulsJob {
 			
 	    	ehRedisCache.put("nulsTotal", result);
 		    	//存数据库
-		    nulsService.dealWithBtcUsdt(etcUstdjson);
-		    nulsService.dealWithEthUsdt(btcUsdtjson);
+		   // nulsService.dealWithBtcUsdt(etcUstdjson);
+		   // nulsService.dealWithEthUsdt(btcUsdtjson);
        } catch (Exception e) {
     	   e.printStackTrace();
        }
