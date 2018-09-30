@@ -35,7 +35,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
 
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.DisableCircularReferenceDetect);
         fastConverter.setFastJsonConfig(fastJsonConfig);
 
         converters.add(fastConverter);

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,6 @@ import java.util.Map;
 /**
  * Created by ln on 2018/3/23.
  */
-@Component
 public class BinanceApiClient implements ApiClient {
 
     private static Logger log = Logger.getLogger(BinanceApiClient.class);
@@ -267,7 +267,6 @@ public class BinanceApiClient implements ApiClient {
           //DecimalFormat df = new DecimalFormat("0.00000000");//保留几位小数，在#后添几个0即可  
 		  //String	f= df.format(btcUstdBidsPriceD);
 //        String res = client.newOrder("NULSUSDT", "buy", 2.1, 26.13);
-
         System.out.println(res);
     }
 }

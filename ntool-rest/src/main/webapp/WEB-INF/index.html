@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title></title>
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Loading Bootstrap -->
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<script src="/js/jquery-1.11.3.min.js" type="text/javascript" charset="UTF-8"></script>
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="UTF-8"></script>
+	<script src="/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" type="text/javascript" charset="UTF-8"></script>
+	<script src="/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" type="text/javascript" charset="UTF-8"></script>
+	<script src="/js/jquery.cookie.js" type="text/javascript" charset="UTF-8"></script>
+	<script src="/js/utils.js" type="text/javascript" charset="UTF-8"></script>	
+</head>
+<style>
+	body {
+		margin: 25px
+	}
+	.col-md-2{
+		width:12.5%;
+	}
+	span{
+		display:block;
+		top: 0;
+    	left: 0;
+   	 	right: 0;
+    	bottom: 0;
+    	text-align: center;
+		font-weight: 600;
+		background: #f5f5f5
+	}
+	th {
+		color: #9fa1a0;
+		font-size: 10px;
+		border-top:none!important;
+		background: #f5f5f5
+	}
+	th, tr td{
+		text-align: center;
+		border-top:none!important;
+	}
+	.in tr td:nth-child(1) {
+		color: #d3447a
+	}
+	.out tr td:nth-child(1) {
+		color: #81a34d;
+	}
+	
+	.in tr.zero td:nth-child(2) {
+		background: -webkit-linear-gradient(left, transparent,transparent,transparent, #fce6f2); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(right, transparent,transparent,transparent, #fce6f2); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(right, transparent,transparent,transparent, #fce6f2); /* Firefox 3.6 - 15 */
+        background: linear-gradient(to right, transparent,transparent,transparent, #fce6f2); /* 标准的语法 */
+	}
+	.in tr.first td:nth-child(2) {
+		background: -webkit-linear-gradient(left, transparent, #fce6f2); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(right, transparent, #fce6f2); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(right, transparent, #fce6f2); /* Firefox 3.6 - 15 */
+        background: linear-gradient(to right, transparent, #fce6f2); /* 标准的语法 */
+	}
+	.in tr.second td:nth-child(2) {
+		background: #fce6f2;
+	}
+	
+	.out tr.zero td:nth-child(2) {
+		background: -webkit-linear-gradient(left, transparent,transparent,transparent, #effaea); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(right, transparent,transparent,transparent, #effaea); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(right, transparent,transparent,transparent, #effaea); /* Firefox 3.6 - 15 */
+        background: linear-gradient(to right, transparent,transparent,transparent, #effaea); /* 标准的语法 */
+	}
+	.out tr.first td:nth-child(2) {
+		background: -webkit-linear-gradient(left, transparent, #effaea); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(right, transparent, #effaea); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(right, transparent, #effaea); /* Firefox 3.6 - 15 */
+        background: linear-gradient(to right, transparent, #effaea); /* 标准的语法 */
+	}
+	.out tr.second td:nth-child(2) {
+		background: #effaea;
+	}
+</style>
+<body>
+   <div class="container-fluid">
+	  <div class="row">
+		  <div class="col-md-2">
+			<div class="table in">
+			  <span>NULS/USTD</span>
+			  <table class="table in" id="nulsUstdAsks">
+			  	<tr>
+				  	<th>price</th>
+				  	<th>amount</th>
+			  	</tr>
+			  </table>
+			</div>
+		  </div>
+		  <div class="col-md-2">
+		  	<span>NULS/USTD</span>
+		  	<table class="table out" id="nulsUstdBids">
+			  	<tr>
+				  	<th>price</th>
+				  	<th>amount</th>
+			  	</tr>
+			 </table>
+		   </div>
+		  <div class="col-md-2">
+		  		<span>NULS/ETH</span>
+		  		<table class="table in" id="nulsEthAsks">
+			  	<tr>
+				  	<th>price</th>
+				  	<th>amount</th>
+			  	</tr>
+			 </table>
+		  </div>
+		  <div class="col-md-2">
+		  		<span>NULS/ETH</span>
+		  		<table class="table out" id="nulsEthBids">
+			  	<tr><th>price</th><th>amount</th></tr>
+			 </table>
+		  </div>
+		  <div class="col-md-2">
+		  		<span>NULS/BTC</span>
+		  		<table class="table in" id="nulsBtcAsks">
+			  	<tr>
+				  	<th>price</th>
+				  	<th>amount</th>
+			  	</tr>
+			 </table>
+		  </div>
+		  <div class="col-md-2">
+		  		<span>NULS/BTC</span>
+		  		<table class="table out" id="nulsBtcBids">
+				  	<tr>
+					  	<th>price</th>
+					  	<th>amount</th>
+				  	</tr>
+			    </table>
+		  </div>
+		  <!--  汇总  卖入-->
+		  <div class="col-md-2">
+		  		<span>TOTAL</span>
+		  		<table class="table in" id="asksTotal">
+			  	<tr>
+				  	<th>price</th>
+				  	<th>amount</th>
+			  	</tr>
+			 </table>
+		  </div>
+		  <!--  汇总  买出-->
+		  <div class="col-md-2">
+		  		<span>TOTAL</span>
+		  		<table class="table out" id="bidsTotal">
+			  	<tr>
+				  	<th>price</th>
+				  	<th>amount</th>
+			  	</tr>
+			 </table>
+		  </div>
+	  </div>
+	</div>
+</body>
+</html>
+<script language="javascript" >
+	
+	function getLength(amount) {
+		if (amount > 0 && amount < 100 ) {
+		   	return 'zero'
+		} else if (amount > 100 && amount < 500) {
+			return 'first'
+		} else if (amount > 500){
+			return 'second'
+		} 
+	}
+	
+	$(function(){
+		   setInterval("nulsUstd()",15000);
+		   setInterval("nulsEth()",15000);
+		   setInterval("nulsBtc()",15000);
+		   setInterval("nulsTotal()",15000);
+		   nulsUstd();
+		   nulsEth();
+		   nulsBtc();
+		   nulsTotal();
+		  // setTimeout("nulsTotal()", 4000)//数据比较多 延迟 4s
+	});
+	function nulsUstd(){
+			$("#nulsUstdAsks").html("");
+			$("#nulsUstdBids").html("");
+			$.ajax({
+					url:"/nuls/getNulsUsdt",
+			  		type:"POST",
+			  		data:{
+			  		},
+			  		dataType:"json",
+			  		cache:false,
+			  		async: false,//不使用异步执行标志
+			  		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			  		success:function(data){
+			  			var  asks= data.data.asks;
+			  			var  bids= data.data.bids;
+						if(asks!=null&&bids!=null){
+							$.each(asks, function(i, n){
+								if(i==0){
+									$("#nulsUstdAsks").append("<tr><th>price</th><th>amount</th></tr>")
+								 }
+							   		$("#nulsUstdAsks").append("<tr class='"+getLength(n.amount)+"'><td >"+n.price+"</td><td >"+n.amount+"</td></tr>");
+							});
+							$.each(bids, function(i, n){
+								if(i==0){
+									$("#nulsUstdBids").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsUstdBids").append("<tr class='"+getLength(n.amount)+"'><td >"+n.price+"</td><td >"+n.amount+"</td></tr>");
+							});
+						}
+			  		},
+			  		error:function(){
+			  		}
+			  	});	
+
+	 }
+	 
+	 function nulsEth(){
+	 		$("#nulsEthAsks").html("");
+			$("#nulsEthBids").html("");
+			$.ajax({
+					url:"/nuls/getNulsEth",
+			  		type:"POST",
+			  		data:{
+			  		},
+			  		dataType:"json",
+			  		cache:false,
+			  		async: false,//不使用异步执行标志
+			  		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			  		success:function(data){
+			  			var  asks= data.data.asks;
+			  			var  bids= data.data.bids;
+						if(asks!=null&&bids!=null){
+							  $.each(asks, function(i, n){
+							  	if(i==0){
+									$("#nulsEthAsks").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							
+							    $("#nulsEthAsks").append("<tr class='"+getLength(n.amount)+"'><td >"+n.price+"</td><td >"+n.amount+"</td></tr>");
+							  });
+							  $.each(bids, function(i, n){
+							  	if(i==0){
+									$("#nulsEthBids").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsEthBids").append("<tr class='"+getLength(n.amount)+"'><td >"+n.price+"</td><td >"+n.amount+"</td></tr>");
+							  });
+							
+						}
+			  		},
+			  		error:function(){
+			  		}
+			  	});	
+
+	   }
+	   
+	    function nulsBtc(){
+	   		$("#nulsBtcAsks").html("");
+			$("#nulsBtcBids").html("");
+			$.ajax({
+					url:"/nuls/getNulsBtc",
+			  		type:"POST",
+			  		data:{
+			  		},
+			  		dataType:"json",
+			  		cache:false,
+			  		async: false,//不使用异步执行标志
+			  		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			  		success:function(data){
+						var  asks= data.data.asks;
+			  			var  bids= data.data.bids;
+						if(asks!=null&&bids!=null){
+							  $.each(asks, function(i, n){
+							  	if(i==0){
+									$("#nulsBtcAsks").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsBtcAsks").append("<tr class='"+getLength(n.amount)+"'><td >"+n.price+"</td><td >"+n.amount+"</td></tr>");
+							 });
+							  $.each(bids, function(i, n){
+							  	if(i==0){
+									$("#nulsBtcBids").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsBtcBids").append("<tr class='"+getLength(n.amount)+"'><td >"+n.price+"</td><td >"+n.amount+"</td></tr>");
+							  });
+							
+						}
+			  		},
+			  		error:function(){
+			  		}
+			  	});	
+	     }
+	     
+	     function nulsTotal(){
+	     	$("#asksTotal").html("");
+			$("#bidsTotal").html("");
+			/* $("#nulsEthAsksTotal").html("");
+			$("#nulsEthAsksTFTotal").html("");
+			$("#nulsBtcBidsTotal").html("");
+			$("#nulsBtcBidsTFTotal").html("");
+			$("#nulsEthBidsTotal").html("");
+			$("#nulsEthBidsTFTotal").html(""); */
+			$.ajax({
+					url:"/nuls/getNulsTotal",
+			  		type:"POST",
+			  		data:{
+			  		},
+			  		dataType:"json",
+			  		cache:false,
+			  		async: false,//不使用异步执行标志
+			  		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			  		success:function(data){
+				  		/*  result.put("nulsBtcAsksTF", mapNulsBtc.get("asks"));//转成ustd
+					    	result.put("nulsBtcBidsTF", mapNulsBtc.get("bids"));//转成ustd
+					    	result.put("nulsBtcAsks", mapNulsBTC.get("asks"));//nuls/btc
+					    	result.put("nulsBtcBids", mapNulsBTC.get("bids"));
+					    	result.put("nulsEthAsksTF", mapNulsEth.get("asks"));//转成ustd
+					    	result.put("nulsEthBidsTF", mapNulsEth.get("bids"));//转成ustd
+					    	result.put("nulsEthBids", mapNulsETH.get("bids"));//nuls/eth
+					    	result.put("nulsEthAsks", mapNulsETH.get("asks"));
+					    	
+					    	 */
+				  		
+				  		var  asks= data.data.asks;
+				  		var  bids= data.data.bids;
+						if(asks!=null&&bids!=null){//nuls对btc  比特币
+							$.each(asks, function(i, n){
+								if(i==0){
+									$("#asksTotal").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#asksTotal").append("<tr class='"+getLength(n.amount)+"'><td >"+n.price+"</td><td >"+n.amount+"</td></tr>");
+						   });
+							$.each(bids, function(i, n){
+							   	if(i==0){
+									$("#bidsTotal").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#bidsTotal").append("<tr class='"+getLength(n.amount)+"'><td >"+n.price+"</td><td >"+n.amount+"</td></tr>");
+							});
+							
+						}
+						
+						/* 	var  nulsBtcAsksTF= data.data.nulsBtcAsksTF;
+				  		var  nulsBtcBidsTF= data.data.nulsBtcBidsTF;
+				  		if(nulsBtcAsksTF!=null&&nulsBtcBidsTF!=null){//nuls对btc  比特币   转成ustd
+				  			$.each(nulsBtcAsksTF, function(i, n){
+				  				if(i==0){
+									$("#nulsBtcAsksTFTotal").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsBtcAsksTFTotal").append("<tr><td >"+n.price+"</td><td class='active'>"+n.amount+"</td></tr>");
+						    });
+				  			$.each(nulsBtcBidsTF, function(i, n){
+				  				if(i==0){
+									$("#nulsBtcBidsTFTotal").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsBtcBidsTFTotal").append("<tr><td class='active'>"+n.price+"</td><td class='active'>"+n.amount+"</td></tr>");
+						    });
+						    
+				  		 }
+				  		 
+				  	var  nulsEthAsks= data.data.nulsEthAsks;
+				  		var  nulsEthBids= data.data.nulsEthBids;
+				  		if(nulsEthAsks!=null&&nulsEthBids!=null){//nuls对ETH  
+				  			$.each(nulsEthAsks, function(i, n){
+				  				if(i==0){
+									$("#nulsEthAsksTotal").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsEthAsksTotal").append("<tr><td class='active'>"+n.price+"</td><td class='active'>"+n.amount+"</td></tr>");
+						    });
+				  			$.each(nulsEthBids, function(i, n){
+				  				if(i==0){
+									$("#nulsEthBidsTotal").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsEthBidsTotal").append("<tr><td class='active'>"+n.price+"</td><td class='active'>"+n.amount+"</td></tr>");
+						    });
+						    
+				  		 }
+				  		 
+				  		var  nulsEthAsksTF= data.data.nulsEthAsksTF;
+				  		var  nulsEthBidsTF= data.data.nulsEthBidsTF; 
+				  		if(nulsEthAsksTF!=null&&nulsBtcBidsTF!=null){//nuls对ETH    转成ustd
+				  			$.each(nulsEthAsksTF, function(i, n){
+				  				if(i==0){
+									$("#nulsEthAsksTFTotal").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsEthAsksTFTotal").append("<tr><td class='active'>"+n.price+"</td><td class='active'>"+n.amount+"</td></tr>");
+						    });
+				  			$.each(nulsEthBidsTF, function(i, n){
+				  				if(i==0){
+									$("#nulsEthBidsTFTotal").append("<tr><th>price</th><th>amount</th></tr>")
+								}
+							    $("#nulsEthBidsTFTotal").append("<tr><td class='active'>"+n.price+"</td><td class='active'>"+n.amount+"</td></tr>");
+						    });
+						    
+				  		 } */
+			  		},
+			  		error:function(){
+			  		}
+			  	});	
+
+	 }
+	
+</script>

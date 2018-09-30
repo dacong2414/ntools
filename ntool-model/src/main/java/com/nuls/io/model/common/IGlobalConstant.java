@@ -15,7 +15,11 @@ public interface IGlobalConstant {
      */
     String  DEFAULT_CACHE_NAME            = "DEFAULT_CACHE";
     /**
-     * 多少条  50
+     * 多少条
      */
-    int  num           = 50;
+    int  number           = 500;
+    /**
+     * 多少条  20
+     */
+    int  num           = 10;
 }

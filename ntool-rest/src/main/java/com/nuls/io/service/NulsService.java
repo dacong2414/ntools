@@ -1,5 +1,6 @@
 package com.nuls.io.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +23,11 @@ public interface NulsService {
     int addEthUsdt(List<EthUsdt> ethUsdtList);
     int addNulsBtc(List<NulsBtc> nulsBtcList);
     int addNulsEth(List<NulsEth> nulsEthList);
+     List<Object> getData(List<Object> list,int from,int to);
     int addNulsUsdt(List<NulsUsdt> nulsUsdtList);
 	Boolean dealWithNnulUsdt(JSONObject json);
 	Boolean dealWithNnulEth(JSONObject json);
-	Map<String ,List<Object>> dealWithData(JSONObject json);
+	Map<String ,List<Object>> dealWithData(JSONObject json,String flag);
 	Boolean dealWithNulsBtc(JSONObject json);
 	Boolean dealWithBtcUsdt(JSONObject json);
 	Boolean dealWithEthUsdt(JSONObject json);
